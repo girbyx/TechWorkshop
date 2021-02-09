@@ -1,0 +1,52 @@
+﻿@using TechWorkshop.Shared.Interfaces
+@typeparam TViewModel
+
+<div class="col form-group">
+    <label>@Title</label>
+    @if (Records != null && Records.Any())
+    {
+        <select class="custom-select" value="@Value" @onchange="OnValueChanged">
+            @if (WithEmptyOption)
+            {
+                <option value="0">--</option>
+            }
+            @foreach (var item in Records)
+            {
+                <option value="@((item as ISelectableViewModel)?.Id)">@((item as ISelectableViewModel)?.Name)</option>
+            }
+        </select>
+    }
+    else
+    {
+        <input type="text" class="form-control" disabled="disabled" value="No hay @Title.ToLower() disponibles" />
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public IEnumerable<TViewModel> Records { get; set; }
+
+    [Parameter]
+    public bool WithEmptyOption { get; set; }
+
+    [Parameter]
+    public int Value { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnChangeCallback { get; set; }
+
+    private Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = Convert.ToInt32(e.Value);
+        OnChangeCallback.InvokeAsync(Value);
+        return ValueChanged.InvokeAsync(Value);
+    }
+
+}

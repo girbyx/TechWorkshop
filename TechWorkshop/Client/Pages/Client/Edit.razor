@@ -1,0 +1,84 @@
+﻿@page "/client/edit/{id}"
+@inherits EditBase
+
+<h1>Edit client</h1>
+
+<div class="text-right">
+    <button type="button" class="btn btn-outline-danger" @onclick="OnDeleteClick"><span class="oi oi-x"></span> Delete</button>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <input type="hidden" class="form-control" @bind="Record.Id" />
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>First name</label>
+            <input type="text" class="form-control" @bind="Record.FirstName" />
+        </div>
+        <div class="col form-group">
+            <label>Middle name</label>
+            <input type="text" class="form-control" @bind="Record.MiddleName" />
+        </div>
+        <div class="col form-group">
+            <label>Last name</label>
+            <input type="text" class="form-control" @bind="Record.LastName" />
+        </div>
+    </div>
+
+    <div class="form-row">
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" @bind="Record.Email" />
+        </div>
+        <div class="col form-group">
+            <label>Phone</label>
+            <input type="tel" class="form-control" @bind="Record.Phone" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Address</label>
+            <input type="text" class="form-control" @bind="Record.Address" />
+        </div>
+        <div class="col form-group">
+            <label>Address cont.</label>
+            <input type="text" class="form-control" @bind="Record.AddressCont" />
+        </div>
+        <div class="col form-group">
+            <label>Zip</label>
+            <input type="number" class="form-control" @bind="Record.Zip" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>City</label>
+            <input type="text" class="form-control" @bind="Record.City" />
+        </div>
+        <div class="col form-group">
+            <label>State</label>
+            <input type="text" class="form-control" @bind="Record.State" />
+        </div>
+        <div class="col form-group">
+            <label>Country</label>
+            <input type="text" class="form-control" @bind="Record.Country" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col form-group">
+            <label>Comments</label>
+            <textarea type="text" class="form-control" @bind="Record.Comments"></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" @onclick="OnCancelClick">Cancel</button>
+</EditForm>

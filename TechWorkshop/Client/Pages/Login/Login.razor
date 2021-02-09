@@ -1,0 +1,32 @@
+﻿@page "/login"
+@inherits LoginBase
+
+<div class="text-center">
+    <h1>Acceder</h1>
+</div>
+
+<EditForm Model="@Record" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-row">
+        <div class="col offset-3 col-md-6 form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" @bind="Record.Username" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col offset-3 col-md-6 form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" @bind="Record.Password" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col offset-3 col-md-6 form-group">
+            <button type="submit" class="btn btn-success">Acceder</button>
+            <button type="button" class="btn btn-secondary" @onclick="Logout">Cerrar sesion</button>
+        </div>
+    </div>
+</EditForm>
